@@ -27,8 +27,8 @@
 
   <Target Name="GetMyPackageFiles">
     <ItemGroup>
-        <BuildOutputInPackage Include="amqmdnetstd.dll">
-          <FinalOutputPath>{pathToDll}</FinalOutputPath>
+        <BuildOutputInPackage Include="POS_PC.dll">
+          <FinalOutputPath>dll\POS_PC.dll</FinalOutputPath>
       </BuildOutputInPackage>
     </ItemGroup>
   </Target>
