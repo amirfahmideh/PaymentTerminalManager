@@ -19,6 +19,10 @@
     <Reference Include="POS_PC">
       <HintPath>dll\POS_PC.dll</HintPath>
     </Reference>
+    <Content Include="dll\POS_PC.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
   </ItemGroup>
 
   <PropertyGroup>
