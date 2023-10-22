@@ -6,4 +6,9 @@ public class TransactionOperation {
         var terminalOperation = TransactionOperationFactory.CreateTerminalOperation(terminalType);
         return terminalOperation.SendToTerminal(sendData);
     }
+
+    public string ImplementSummery(SupportedTerminal terminalType) {
+        var terminalOperation = TransactionOperationFactory.CreateTerminalOperation(terminalType);
+        return terminalOperation.ImplementSummery();
+    }
 }
