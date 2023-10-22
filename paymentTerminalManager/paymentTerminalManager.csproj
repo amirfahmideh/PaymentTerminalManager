@@ -27,7 +27,7 @@
 
   <Target Name="GetMyPackageFiles">
     <ItemGroup>
-        <BuildOutputInPackage Include="POS_PC.dll">
+        <BuildOutputInPackage Include="dll\POS_PC.dll">
           <FinalOutputPath>dll\POS_PC.dll</FinalOutputPath>
       </BuildOutputInPackage>
     </ItemGroup>
