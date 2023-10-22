@@ -6,7 +6,8 @@
     <PackageProjectUrl>https://github.com/amirfahmideh/PaymentTerminalManager</PackageProjectUrl>
     <PackageTags>post, termianl, behpardakht</PackageTags>
     <EnablePackageValidation>true</EnablePackageValidation>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>

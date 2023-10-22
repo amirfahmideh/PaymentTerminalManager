@@ -1,6 +1,7 @@
+using System;
 using paymentTerminalManager.dto;
 
-namespace paymentTerminalManager.implement;
+namespace paymentTerminalManager.implement {
 internal class BehpardakhtTransactionOperation : ITransactionOperation
 {
     public SendToTerminalResult SendToTerminal(SendToTerminal sendToTerminal)
@@ -34,5 +35,5 @@ internal class BehpardakhtTransactionOperation : ITransactionOperation
     {
         return $"version: {POS_PC_v3.Globals.dllVersion}"; 
     }
-
+}
 }
