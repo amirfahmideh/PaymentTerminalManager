@@ -2,7 +2,7 @@
 {
     public class SendToTerminalResult
     {
-        public bool IsSuccess {get;set;} = true;
+        public bool IsSuccess {get;set;} = false;
         public string AccountNo { get; set; } = default!;
         public string TerminalNo { get; set; }= default!;
         public string CardNumber { get; set; }= default!;

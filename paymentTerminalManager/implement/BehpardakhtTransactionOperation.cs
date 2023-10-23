@@ -1,39 +1,45 @@
-using System;
 using paymentTerminalManager.dto;
+using System;
 
-namespace paymentTerminalManager.implement {
-internal class BehpardakhtTransactionOperation : ITransactionOperation
+namespace paymentTerminalManager.implement
 {
-    public SendToTerminalResult SendToTerminal(SendToTerminal sendToTerminal)
+    internal class BehpardakhtTransactionOperation : ITransactionOperation
     {
-        SendToTerminalResult result = new SendToTerminalResult();
-        POS_PC_v3.Transaction.Connection connection = new POS_PC_v3.Transaction.Connection
+        const string BEHPARDAKHT_CONNECTION_TYPE = "TCP/IP";
+        public SendToTerminalResult SendToTerminal(SendToTerminal sendToTerminal)
         {
-            CommunicationType = "serial",
-            POS_IP = sendToTerminal.IP,
-            POS_PORTtcp = sendToTerminal.Port
-        };
+            SendToTerminalResult result = new SendToTerminalResult();
+            POS_PC_v3.Transaction.Connection connection = new POS_PC_v3.Transaction.Connection
+            {
+                POSPC_TCPCOMMU_SocketRecTimeout = 60000,
+                CommunicationType = BEHPARDAKHT_CONNECTION_TYPE,
+                POS_IP = sendToTerminal.IP,
+                POS_PORTtcp = sendToTerminal.Port
+            };
 
-        POS_PC_v3.Transaction t = new POS_PC_v3.Transaction(connection);
-        POS_PC_v3.Result terminalResult = t.Payment("True",sendToTerminal.RequestId,"1",sendToTerminal.Price.ToString(),string.Empty,string.Empty,string.Empty);
-        if(terminalResult.ReturnCode == (int)POS_PC_v3.Result.return_codes.RET_OK) {
-            result.IsSuccess = true;
-            result.Price = string.IsNullOrEmpty(terminalResult.Amount) ? (decimal?)null : Convert.ToDecimal(terminalResult.Amount);
-            result.AccountNo = terminalResult.AccountNo;
-            result.CardNumber = terminalResult.PAN;
-            result.TransactionDate = terminalResult.TransactionDate;
-            result.TransactionTime = terminalResult.TransactionTime;
-            result.TransactionSerialNumber = terminalResult.SerialTransaction;
-            result.TerminalNo = terminalResult.TerminalNo;
+            POS_PC_v3.Transaction t = new POS_PC_v3.Transaction(connection);
+            POS_PC_v3.Result terminalResult = t.Debits_Goods_And_Service(sendToTerminal.RequestId, "", sendToTerminal.Price.ToString("N0"), "", "", "");
+            if (terminalResult.ReturnCode == (int)POS_PC_v3.Result.return_codes.RET_OK)
+            {
+                result.IsSuccess = true;
+                result.Price = string.IsNullOrEmpty(terminalResult.Amount) ? (decimal?)null : Convert.ToDecimal(terminalResult.Amount);
+                result.AccountNo = terminalResult.AccountNo;
+                result.CardNumber = terminalResult.PAN;
+                result.TransactionDate = terminalResult.TransactionDate;
+                result.TransactionTime = terminalResult.TransactionTime;
+                result.TransactionSerialNumber = terminalResult.SerialTransaction;
+                result.TerminalNo = terminalResult.TerminalNo;
+            }
+            else
+            {
+                result.IsSuccess = false;
+                result.ErrorCode = terminalResult.ReturnCode.ToString();
+            }
+            return result;
         }
-        else {
-            result.ErrorCode = terminalResult.ReturnCode.ToString();
+        public string ImplementSummery()
+        {
+            return $"version: {POS_PC_v3.Globals.dllVersion}";
         }
-        return result;
     }
-    public string ImplementSummery()
-    {
-        return $"version: {POS_PC_v3.Globals.dllVersion}"; 
-    }
-}
 }
