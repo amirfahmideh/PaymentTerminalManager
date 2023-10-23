@@ -17,13 +17,13 @@ namespace PaymentTerminalManagerTest
             decimal num;
             Assert.Multiple(()=>{
                 num = 10;
-                Assert.That("10", Is.EqualTo(PriceConvert.ConvertDecimalToLongString(num)));
+                Assert.That(PriceConvert.ConvertDecimalToLongString(num), Is.EqualTo("10"));
                 num = 10.20M;
-                Assert.That("10", Is.EqualTo(PriceConvert.ConvertDecimalToLongString(num)));
+                Assert.That(PriceConvert.ConvertDecimalToLongString(num), Is.EqualTo("10"));
                 num = 0;
-                Assert.That("0", Is.EqualTo(PriceConvert.ConvertDecimalToLongString(num)));
+                Assert.That(PriceConvert.ConvertDecimalToLongString(num), Is.EqualTo("0"));
                 num = 5 / 2;
-                Assert.That("2", Is.EqualTo(PriceConvert.ConvertDecimalToLongString(num)));
+                Assert.That(PriceConvert.ConvertDecimalToLongString(num), Is.EqualTo("2"));
             });
         }
     }

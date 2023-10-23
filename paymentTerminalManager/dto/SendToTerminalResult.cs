@@ -11,6 +11,8 @@
         public string TransactionSerialNumber {get;set;}= default!;
         public string ReferenceNumber {get;set;}= default!;
         public string ErrorCode {get;set;}= default!;
+        public string ErrorTitle {get;set;}= default!;
         public decimal? Price {get;set;}
+        public DateTime TransactionDateTime {get;set;}
     }
 }
