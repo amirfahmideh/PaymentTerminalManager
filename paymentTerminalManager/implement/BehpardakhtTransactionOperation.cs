@@ -1,7 +1,9 @@
-using paymentTerminalManager.dto;
+using PaymentTerminalManager.dto;
+using PaymentTerminalManager.Interface;
+using PaymentTerminalManager.Lib;
 using System;
 
-namespace paymentTerminalManager.implement
+namespace PaymentTerminalManager.implement
 {
     internal class BehpardakhtTransactionOperation : ITransactionOperation
     {
@@ -18,7 +20,7 @@ namespace paymentTerminalManager.implement
             };
 
             POS_PC_v3.Transaction t = new POS_PC_v3.Transaction(connection);
-            POS_PC_v3.Result terminalResult = t.Debits_Goods_And_Service(sendToTerminal.RequestId, "", sendToTerminal.Price.ToString("N0"), "", "", "");
+            POS_PC_v3.Result terminalResult = t.Debits_Goods_And_Service(sendToTerminal.RequestId, "", PriceConvert.ConvertDecimalToLongString(sendToTerminal.Price) , "", "", "");
             if (terminalResult.ReturnCode == (int)POS_PC_v3.Result.return_codes.RET_OK)
             {
                 result.IsSuccess = true;

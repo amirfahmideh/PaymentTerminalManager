@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using paymentTerminalManager.dto;
+using PaymentTerminalManager.dto;
 
-namespace paymentTerminalManager
+namespace PaymentTerminalManager.Interface
 {
     internal interface ITransactionOperation
     {

@@ -1,4 +1,4 @@
-﻿namespace paymentTerminalManager.dto
+﻿namespace PaymentTerminalManager.dto
 {
     public class SendToTerminalResult
     {

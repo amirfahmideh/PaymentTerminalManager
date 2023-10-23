@@ -1,6 +1,8 @@
-using paymentTerminalManager;
-using paymentTerminalManager.implement;
-
+using PaymentTerminalManager;
+using PaymentTerminalManager.Exceptions;
+using PaymentTerminalManager.implement;
+using PaymentTerminalManager.Interface;
+namespace PaymentTerminalManager.Factory;
 internal class TransactionOperationFactory {
     internal static ITransactionOperation CreateTerminalOperation(SupportedTerminal terminalType ) {
         switch (terminalType) {

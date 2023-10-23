@@ -1,6 +1,7 @@
-using paymentTerminalManager.dto;
+using PaymentTerminalManager.dto;
+using PaymentTerminalManager.Factory;
 
-namespace paymentTerminalManager {
+namespace PaymentTerminalManager {
     public class TransactionOperation {
         public SendToTerminalResult SendToTerminal(SupportedTerminal terminalType, SendToTerminal sendData) {
             var terminalOperation = TransactionOperationFactory.CreateTerminalOperation(terminalType);

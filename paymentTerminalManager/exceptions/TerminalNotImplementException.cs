@@ -1,4 +1,5 @@
 using System;
+namespace PaymentTerminalManager.Exceptions;
 public class TerminalNotImplementException : Exception {
     public TerminalNotImplementException()
     {

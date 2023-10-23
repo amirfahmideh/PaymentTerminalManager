@@ -1,6 +1,6 @@
-namespace paymentTerminalManagerTest
+namespace PaymentTerminalManagerTest
 {
-    public class Tests
+    public class TransactionOperationGeneralTests
     {
         [SetUp]
         public void Setup()
@@ -11,7 +11,7 @@ namespace paymentTerminalManagerTest
         [Test]
         public void ImplementedSummaryIsExistForAllTypes()
         {
-            paymentTerminalManager.TransactionOperation transactionOperation = new paymentTerminalManager.TransactionOperation();
+            PaymentTerminalManager.TransactionOperation transactionOperation = new PaymentTerminalManager.TransactionOperation();
             var behpardakhtInfo = transactionOperation.ImplementSummery(SupportedTerminal.BEHPARDAKHT);
             Assert.IsFalse(string.IsNullOrEmpty(behpardakhtInfo));
         }
