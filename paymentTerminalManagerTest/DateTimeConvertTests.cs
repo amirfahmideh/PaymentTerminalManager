@@ -23,9 +23,9 @@ namespace PaymentTerminalManagerTest
                 var d4 = DateTime.Parse("2023/10/23 2:20");
                 Assert.That(d4, Is.EqualTo(d3));
 
-                // var d5 = DateTimeConvert.ParsPersianDateTime("1402/8/1","");
-                // var d6 = DateTime.Parse("2023/10/23 0:0");
-                // Assert.That(d5, Is.EqualTo(d6));
+                var d5 = DateTimeConvert.ParsPersianDateTime("1402/8/1","");
+                var d6 = DateTime.Parse($"2023/10/23 {DateTime.Now.Hour}:{DateTime.Now.Minute}");
+                Assert.That(d5, Is.EqualTo(d6));
             });
         }
     }
