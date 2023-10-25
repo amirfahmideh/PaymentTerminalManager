@@ -21,6 +21,7 @@ namespace PaymentTerminalManager.implement
                 POS_PORTtcp = sendToTerminal.Port
             };
 
+
             POS_PC_v3.Transaction t = new POS_PC_v3.Transaction(connection);
             POS_PC_v3.Result terminalResult = t.Debits_Goods_And_Service(sendToTerminal.RequestId, "", PriceConvert.ConvertDecimalToLongString(sendToTerminal.Price) , "", "", "");
             if (terminalResult.ReturnCode == (int)POS_PC_v3.Result.return_codes.RET_OK)
@@ -29,7 +30,7 @@ namespace PaymentTerminalManager.implement
                 result.Price = string.IsNullOrEmpty(terminalResult.Amount) ? (decimal?)null : Convert.ToDecimal(terminalResult.Amount);
                 result.AccountNo = terminalResult.AccountNo;
                 result.CardNumber = terminalResult.PAN;
-                result.TransactionSerialNumber = terminalResult.SerialTransaction;
+                result.TransactionSerialNumber = terminalResult.TraceNumber;
                 result.TerminalNo = terminalResult.TerminalNo;
                 result.ErrorCode = terminalResult.ReturnCode.ToString();
                 result.ErrorTitle = FriendlyErrorTitle(terminalResult.ReturnCode);

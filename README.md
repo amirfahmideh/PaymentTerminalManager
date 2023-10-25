@@ -2,3 +2,8 @@
 
 # PaymentTerminalManager
 PaymentTerminalManager .net library standard 
+
+# Supported Bank 
+- Sadad (Bluebird)
+- Behpardakht
+

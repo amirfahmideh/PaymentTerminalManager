@@ -23,7 +23,7 @@ namespace PaymentTerminalManager.implement
             if(terminalResult.ResponseCode == "00" ) {
                 result.IsSuccess = true;
                 result.Price = Decimal.TryParse(terminalResult.Amount, out decimal trsPrice) ? trsPrice : 0;
-                result.AccountNo = terminalResult.SaleId;
+                result.AccountNo = terminalResult.MerchantId;
                 result.CardNumber = terminalResult.CardNo;
                 result.TransactionSerialNumber = terminalResult.Rrn;
                 result.TerminalNo = terminalResult.TerminalId;
