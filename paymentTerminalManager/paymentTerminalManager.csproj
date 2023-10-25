@@ -26,6 +26,11 @@
           <FinalOutputPath>dll\POS_PC.dll</FinalOutputPath>
       </BuildOutputInPackage>
     </ItemGroup>
+    <ItemGroup>
+        <BuildOutputInPackage Include="dll\Sadad.PcPos.Core.dll">
+          <FinalOutputPath>dll\Sadad.PcPos.Core.dll</FinalOutputPath>
+      </BuildOutputInPackage>
+    </ItemGroup>
   </Target>
 
   <PropertyGroup>
@@ -66,6 +71,12 @@
   <ItemGroup>
     <Reference Include="POS_PC">
       <HintPath>dll\POS_PC.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Sadad.PcPos.Core">
+      <HintPath>dll\Sadad.PcPos.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
 
