@@ -35,7 +35,7 @@ namespace PaymentTerminalManager.implement
 
                 result.IsSuccess = false;
                 result.ErrorCode = terminalResult.ResponseCode;
-                result.ErrorTitle = terminalResult.ResponseCodeMessage;
+                result.ErrorTitle = terminalResult.PcPosStatus;
             }
            
             return result;
