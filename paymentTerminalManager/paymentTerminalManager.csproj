@@ -31,6 +31,18 @@
           <FinalOutputPath>dll\Sadad.PcPos.Core.dll</FinalOutputPath>
       </BuildOutputInPackage>
     </ItemGroup>
+    <ItemGroup>
+        <BuildOutputInPackage Include="dll\SSP1126.PcPos.dll">
+          <FinalOutputPath>dll\SSP1126.PcPos.dll</FinalOutputPath>
+      </BuildOutputInPackage>
+    </ItemGroup>
+    <ItemGroup>
+        <BuildOutputInPackage Include="dll\Sep.Logger.dll">
+          <FinalOutputPath>dll\Sep.Logger.dll</FinalOutputPath>
+      </BuildOutputInPackage>
+    </ItemGroup>
+    
+    
   </Target>
 
   <PropertyGroup>
@@ -65,6 +77,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="7.0.0" />
     <PackageReference Include="System.IO.Ports" Version="7.0.0" />
   </ItemGroup>
 
@@ -79,5 +93,15 @@
       <HintPath>dll\Sadad.PcPos.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
-
+  <ItemGroup>
+    <Reference Include="SSP1126.PcPos">
+      <HintPath>dll\SSP1126.PcPos.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Sep.Logger">
+      <HintPath>dll\Sep.Logger.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  
 </Project>

@@ -16,15 +16,15 @@ namespace PaymentTerminalManagerTest
             Assert.IsFalse(string.IsNullOrEmpty(behpardakhtInfo));
         }
 
-        //[Test]
-        //public void ConnectionToTerminal()
-        //{
+        // [Test]
+        // public void ConnectionToTerminal()
+        // {
         //    try
         //    {
-        //        paymentTerminalManager.TransactionOperation transactionOperation = new paymentTerminalManager.TransactionOperation();
-        //        var behpardakhtInfo = transactionOperation.SendToTerminal(SupportedTerminal.BEHPARDAKHT, new paymentTerminalManager.dto.SendToTerminal
+        //        PaymentTerminalManager.TransactionOperation transactionOperation = new PaymentTerminalManager.TransactionOperation();
+        //        var behpardakhtInfo = transactionOperation.SendToTerminal(SupportedTerminal.SAMANKISH, new PaymentTerminalManager.dto.SendToTerminal
         //        {
-        //            IP = "192.168.30.182",
+        //            IP = "192.168.30.151",
         //            Port = 1024,
         //            Price = 10000,
         //            RequestId = "1"
@@ -35,6 +35,6 @@ namespace PaymentTerminalManagerTest
         //    {
         //        Assert.False(true);
         //    }
-        //}
+        // }
     }
 }
