@@ -36,13 +36,6 @@
           <FinalOutputPath>dll\SSP1126.PcPos.dll</FinalOutputPath>
       </BuildOutputInPackage>
     </ItemGroup>
-    <ItemGroup>
-        <BuildOutputInPackage Include="dll\Sep.Logger.dll">
-          <FinalOutputPath>dll\Sep.Logger.dll</FinalOutputPath>
-      </BuildOutputInPackage>
-    </ItemGroup>
-    
-    
   </Target>
 
   <PropertyGroup>
@@ -98,10 +91,4 @@
       <HintPath>dll\SSP1126.PcPos.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Sep.Logger">
-      <HintPath>dll\Sep.Logger.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  
 </Project>

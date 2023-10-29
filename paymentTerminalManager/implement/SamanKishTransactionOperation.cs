@@ -15,9 +15,9 @@ namespace PaymentTerminalManager.implement
             SSP1126.PcPos.BaseClasses.PcPosFactory pcPos = new SSP1126.PcPos.BaseClasses.PcPosFactory();
             
             pcPos.SetLan(sendToTerminal.IP);
-            pcPos.Initialization(SSP1126.PcPos.Infrastructure.ResponseLanguage.Persian,180, SSP1126.PcPos.Infrastructure.AsyncType.Sync);
+            pcPos.Initialization(SSP1126.PcPos.Infrastructure.ResponseLanguage.Persian,60, SSP1126.PcPos.Infrastructure.AsyncType.Sync);
             // var terminalResult = pcPos.PcStarterPurchase(PriceConvert.ConvertDecimalToLongString(sendToTerminal.Price), string.Empty, string.Empty, string.Empty,null,null,null,-1,null,-1);
-            var terminalResult = pcPos.PcStarterPurchase(PriceConvert.ConvertDecimalToLongString(sendToTerminal.Price), string.Empty, string.Empty, string.Empty);
+            var terminalResult = pcPos.PcStarterPurchase("10000", null, null, null,null,null);
             
             if(terminalResult.ResponseCode == "0") {
                 result.IsSuccess = true;
