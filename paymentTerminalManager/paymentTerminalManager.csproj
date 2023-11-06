@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Authors>Amir Fahmideh</Authors>
-    <Description>.net standard library to support Iramiam bank terminal for money transactions</Description>
+    <Description>.net standard library to support Iranian bank terminal for money transactions</Description>
     <PackageProjectUrl>https://github.com/amirfahmideh/PaymentTerminalManager</PackageProjectUrl>
     <PackageTags>post, termianl, behpardakht</PackageTags>
     <EnablePackageValidation>true</EnablePackageValidation>
