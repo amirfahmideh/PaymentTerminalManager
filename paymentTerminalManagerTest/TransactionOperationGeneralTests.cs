@@ -16,6 +16,23 @@ namespace PaymentTerminalManagerTest
             Assert.IsFalse(string.IsNullOrEmpty(behpardakhtInfo));
         }
 
+
+        [Test]
+        public void PosRefundTest()
+        {
+            PaymentTerminalManager.TransactionOperation transactionOperation = new PaymentTerminalManager.TransactionOperation();
+            transactionOperation.PosRefundRequest(SupportedTerminal.BEHPARDAKHT, new PaymentTerminalManager.dto.RefundFromTerminal()
+            {
+                Password = "123456",
+                RefundPrice = 2000,
+                SaleReferenceId = 66556655656,
+                TerminalId = 1,
+                UserName = "123122312"
+            });
+            Assert.IsTrue(true);
+        }
+
+
         // [Test]
         // public void ConnectionToTerminal()
         // {

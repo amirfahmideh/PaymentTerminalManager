@@ -3,7 +3,9 @@ using PaymentTerminalManager.Interface;
 using PaymentTerminalManager.Lib;
 using System;
 using System.Runtime.CompilerServices;
-
+using ServiceReference;
+using static ServiceReference.PaymentGatewayClient;
+using System.ServiceModel;
 [assembly: InternalsVisibleTo("PaymentTerminalManagerTest")]
 namespace PaymentTerminalManager.implement
 {
@@ -103,6 +105,36 @@ namespace PaymentTerminalManager.implement
                 {200,defaultErrorMessage},
             };
             return errorMaps.TryGetValue(errorCode, out string message) ? message : defaultErrorMessage;
+        }
+
+        public async Task PosRefundRequest(RefundFromTerminal refundFromTerminal)
+        {
+            try
+            {
+                bpPosRefundRequest bpPosRefundRequest = new bpPosRefundRequest
+                {
+                    user = refundFromTerminal.UserName,
+                    password = refundFromTerminal.Password,
+                    saleReferenceId = refundFromTerminal.SaleReferenceId,
+                    refundAmount = refundFromTerminal.RefundPrice
+                };
+
+                EndpointAddress endAddress = new EndpointAddress("https://bpm.shaparak.ir/pgwchannel/startpay.mellat");
+
+                EndpointConfiguration enConfig = new EndpointConfiguration();
+
+                
+
+                PaymentGatewayClient client = new PaymentGatewayClient(PaymentGatewayClient., endAddress);
+                var refundResult = await client.bpPosRefundRequestAsync(bpPosRefundRequest);
+
+
+                
+            }
+            catch (Exception ex)
+            {
+                int a = 10;
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <Authors>Amir Fahmideh</Authors>
     <Description>.net standard library to support Iranian bank terminal for money transactions</Description>
@@ -11,56 +11,47 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-   <PropertyGroup>
+  <PropertyGroup>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
-
   <PropertyGroup>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetMyPackageFiles</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
-
   <Target Name="GetMyPackageFiles">
     <ItemGroup>
-        <BuildOutputInPackage Include="dll\POS_PC.dll">
-          <FinalOutputPath>dll\POS_PC.dll</FinalOutputPath>
+      <BuildOutputInPackage Include="dll\POS_PC.dll">
+        <FinalOutputPath>dll\POS_PC.dll</FinalOutputPath>
       </BuildOutputInPackage>
     </ItemGroup>
     <ItemGroup>
-        <BuildOutputInPackage Include="dll\Sadad.PcPos.Core.dll">
-          <FinalOutputPath>dll\Sadad.PcPos.Core.dll</FinalOutputPath>
+      <BuildOutputInPackage Include="dll\Sadad.PcPos.Core.dll">
+        <FinalOutputPath>dll\Sadad.PcPos.Core.dll</FinalOutputPath>
       </BuildOutputInPackage>
     </ItemGroup>
     <ItemGroup>
-        <BuildOutputInPackage Include="dll\SSP1126.PcPos.dll">
-          <FinalOutputPath>dll\SSP1126.PcPos.dll</FinalOutputPath>
+      <BuildOutputInPackage Include="dll\SSP1126.PcPos.dll">
+        <FinalOutputPath>dll\SSP1126.PcPos.dll</FinalOutputPath>
       </BuildOutputInPackage>
     </ItemGroup>
   </Target>
-
   <PropertyGroup>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
-
   <ItemGroup>
     <!-- Add a README.md next to the csproj -->
     <None Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
-
   <PropertyGroup>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <!-- If all members are not documented, you can disable the compiler warnings -->
     <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
-
   <PropertyGroup>
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
-
   <ItemGroup>
     <None Include="icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -74,13 +65,11 @@
     <PackageReference Include="System.Diagnostics.EventLog" Version="7.0.0" />
     <PackageReference Include="System.IO.Ports" Version="7.0.0" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="POS_PC">
       <HintPath>dll\POS_PC.dll</HintPath>
     </Reference>
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="Sadad.PcPos.Core">
       <HintPath>dll\Sadad.PcPos.Core.dll</HintPath>
@@ -90,5 +79,11 @@
     <Reference Include="SSP1126.PcPos">
       <HintPath>dll\SSP1126.PcPos.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.6.*" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.6.*" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.6.*" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.6.*" />
   </ItemGroup>
 </Project>

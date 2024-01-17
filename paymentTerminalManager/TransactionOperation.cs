@@ -12,5 +12,10 @@ namespace PaymentTerminalManager {
             var terminalOperation = TransactionOperationFactory.CreateTerminalOperation(terminalType);
             return terminalOperation.ImplementSummery();
         }
+
+        public async Task PosRefundRequest(SupportedTerminal terminalType, RefundFromTerminal refundFromTerminal) {
+            var terminalOperation = TransactionOperationFactory.CreateTerminalOperation(terminalType);
+            terminalOperation.PosRefundRequest(refundFromTerminal);
+        }
     }
 }
