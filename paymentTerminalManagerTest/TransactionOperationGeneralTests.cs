@@ -18,32 +18,32 @@ namespace PaymentTerminalManagerTest
 
 
         [Test]
-        public void PosRefundTest()
+        public async Task PosRefundTest()
         {
             PaymentTerminalManager.TransactionOperation transactionOperation = new PaymentTerminalManager.TransactionOperation();
-            transactionOperation.PosRefundRequest(SupportedTerminal.BEHPARDAKHT, new PaymentTerminalManager.dto.RefundFromTerminal()
+            await transactionOperation.PosRefundRequest(SupportedTerminal.BEHPARDAKHT, new PaymentTerminalManager.dto.RefundFromTerminal()
             {
-                Password = "123456",
-                RefundPrice = 2000,
-                SaleReferenceId = 66556655656,
-                TerminalId = 1,
-                UserName = "123122312"
+                Password = "54075867",
+                RefundPrice = 50000,
+                SaleReferenceId = 263002005556,
+                TerminalId = 6520823,
+                UserName = "land1401"
             });
             Assert.IsTrue(true);
         }
 
 
-        // [Test]
-        // public void ConnectionToTerminal()
-        // {
+        //[Test]
+        //public void ConnectionToTerminal()
+        //{
         //    try
         //    {
         //        PaymentTerminalManager.TransactionOperation transactionOperation = new PaymentTerminalManager.TransactionOperation();
-        //        var behpardakhtInfo = transactionOperation.SendToTerminal(SupportedTerminal.SAMANKISH, new PaymentTerminalManager.dto.SendToTerminal
+        //        var behpardakhtInfo = transactionOperation.SendToTerminal(SupportedTerminal.BEHPARDAKHT, new PaymentTerminalManager.dto.SendToTerminal
         //        {
-        //            IP = "192.168.30.124",
+        //            IP = "192.168.30.131",
         //            Port = 1024,
-        //            Price = 10000,
+        //            Price = 50000,
         //            RequestId = ""
         //        });
         //        Assert.True(true);
@@ -52,6 +52,6 @@ namespace PaymentTerminalManagerTest
         //    {
         //        Assert.False(true);
         //    }
-        // }
+        //}
     }
 }

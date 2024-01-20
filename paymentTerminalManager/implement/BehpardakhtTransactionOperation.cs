@@ -1,11 +1,8 @@
 using PaymentTerminalManager.dto;
 using PaymentTerminalManager.Interface;
 using PaymentTerminalManager.Lib;
-using System;
-using System.Runtime.CompilerServices;
 using ServiceReference;
-using static ServiceReference.PaymentGatewayClient;
-using System.ServiceModel;
+using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("PaymentTerminalManagerTest")]
 namespace PaymentTerminalManager.implement
 {
@@ -25,7 +22,7 @@ namespace PaymentTerminalManager.implement
 
 
             POS_PC_v3.Transaction t = new POS_PC_v3.Transaction(connection);
-            POS_PC_v3.Result terminalResult = t.Debits_Goods_And_Service(sendToTerminal.RequestId, "", PriceConvert.ConvertDecimalToLongString(sendToTerminal.Price) , "", "", "");
+            POS_PC_v3.Result terminalResult = t.Debits_Goods_And_Service(sendToTerminal.RequestId, "", PriceConvert.ConvertDecimalToLongString(sendToTerminal.Price), "", "", "");
             if (terminalResult.ReturnCode == (int)POS_PC_v3.Result.return_codes.RET_OK)
             {
                 result.IsSuccess = true;
@@ -50,9 +47,10 @@ namespace PaymentTerminalManager.implement
         {
             return $"version: {POS_PC_v3.Globals.dllVersion}";
         }
-        private string FriendlyErrorTitle(int errorCode){
+        private string FriendlyErrorTitle(int errorCode)
+        {
             const string defaultErrorMessage = "خطای نامشخصی رخداده است";
-            Dictionary<int, string> errorMaps = new Dictionary<int,string>() {
+            Dictionary<int, string> errorMaps = new Dictionary<int, string>() {
                 {100,"تراکنش با موفقیت انجام شد"},
                 {101,"اندازه پیام دریافتی از ترمینال معتبر نمی باشد"},
                 {102,"پیام دریافتی از سیسنم نامعتبر می باشد"},
@@ -107,29 +105,24 @@ namespace PaymentTerminalManager.implement
             return errorMaps.TryGetValue(errorCode, out string message) ? message : defaultErrorMessage;
         }
 
-        public async Task PosRefundRequest(RefundFromTerminal refundFromTerminal)
+        public async Task PosRefundRequest(RefundFromTerminal rft)
         {
             try
             {
-                bpPosRefundRequest bpPosRefundRequest = new bpPosRefundRequest
-                {
-                    user = refundFromTerminal.UserName,
-                    password = refundFromTerminal.Password,
-                    saleReferenceId = refundFromTerminal.SaleReferenceId,
-                    refundAmount = refundFromTerminal.RefundPrice
-                };
-
-                EndpointAddress endAddress = new EndpointAddress("https://bpm.shaparak.ir/pgwchannel/startpay.mellat");
-
-                EndpointConfiguration enConfig = new EndpointConfiguration();
-
+                
                 
 
-                PaymentGatewayClient client = new PaymentGatewayClient(PaymentGatewayClient., endAddress);
-                var refundResult = await client.bpPosRefundRequestAsync(bpPosRefundRequest);
+                PaymentGatewayClient client = new PaymentGatewayClient();
 
+                //var verifyResult = await client.bpVerifyRequestAsync(rft.TerminalId, rft.UserName, rft.Password, 0, 0, rft.SaleReferenceId);
+                //var verifyResult2 = await client.bpRefundVerifyRequestAsync(rft.TerminalId, rft.UserName, rft.Password, 0, 0, rft.SaleReferenceId);
 
-                
+                //var ref2 = await client.bpPosRefundRequestAsync(rft.UserName, rft.Password, rft.SaleReferenceId, rft.RefundPrice);
+                //var refundResult2 = await client.bpRefundRequestV2Async(rft.TerminalId, rft.UserName, rft.Password, "", "09358379443", 0, 0, rft.SaleReferenceId, rft.RefundPrice);
+                var refundResult3 = await client.bpRefundRequestAsync(rft.TerminalId, rft.UserName, rft.Password, 0, 0, rft.SaleReferenceId, rft.RefundPrice);
+
+                //var ref3 = await client.bpRefundToPANRequestAsync(rft.UserName, rft.Password, 5041721051071315, rft.RefundPrice, rft.TerminalId, rft.TerminalId, "09358379443", 1);
+                //var ref4 = await client.bpRefundToPANRequestV2Async(rft.UserName, rft.Password, 5041721051071315, rft.RefundPrice, rft.SaleReferenceId, rft.TerminalId, 0, "09358379443");
             }
             catch (Exception ex)
             {

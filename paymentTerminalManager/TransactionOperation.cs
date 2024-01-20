@@ -15,7 +15,7 @@ namespace PaymentTerminalManager {
 
         public async Task PosRefundRequest(SupportedTerminal terminalType, RefundFromTerminal refundFromTerminal) {
             var terminalOperation = TransactionOperationFactory.CreateTerminalOperation(terminalType);
-            terminalOperation.PosRefundRequest(refundFromTerminal);
+            await terminalOperation.PosRefundRequest(refundFromTerminal);
         }
     }
 }

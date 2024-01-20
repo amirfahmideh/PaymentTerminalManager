@@ -1,0 +1,36 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, ServiceReference"
+    ],
+    "references": [
+      "D:\\_Repositories\\_myGitHub\\paymentTerminalManager\\paymentTerminalManager\\bin\\Debug\\netstandard2.1\\POS_PC.dll",
+      "D:\\_Repositories\\_myGitHub\\paymentTerminalManager\\paymentTerminalManager\\bin\\Debug\\netstandard2.1\\Sadad.PcPos.Core.dll",
+      "D:\\_Repositories\\_myGitHub\\paymentTerminalManager\\paymentTerminalManager\\bin\\Debug\\netstandard2.1\\SSP1126.PcPos.dll",
+      "System.Configuration.ConfigurationManager, {System.Configuration.ConfigurationManager, 7.0.0}",
+      "System.Diagnostics.EventLog, {System.Diagnostics.EventLog, 7.0.0}",
+      "System.IO.Ports, {System.IO.Ports, 7.0.0}",
+      "System.Reflection.DispatchProxy, {System.Reflection.DispatchProxy, 4.5.0}",
+      "System.Security.AccessControl, {System.Security.AccessControl, 6.0.0}",
+      "System.Security.Cryptography.ProtectedData, {System.Security.Cryptography.ProtectedData, 7.0.0}",
+      "System.Security.Cryptography.Xml, {System.Security.Cryptography.Xml, 4.5.0}",
+      "System.Security.Permissions, {System.Security.Permissions, 7.0.0}",
+      "System.Security.Principal.Windows, {System.Security.Principal.Windows, 5.0.0}",
+      "System.ServiceModel, {System.ServiceModel.Primitives, 4.6.0}",
+      "System.ServiceModel.Duplex, {System.ServiceModel.Duplex, 4.6.0}",
+      "System.ServiceModel.Http, {System.ServiceModel.Http, 4.6.0}",
+      "System.ServiceModel.NetTcp, {System.ServiceModel.NetTcp, 4.6.0}",
+      "System.ServiceModel.Primitives, {System.ServiceModel.Primitives, 4.6.0}",
+      "System.ServiceModel.Security, {System.ServiceModel.Security, 4.6.0}"
+    ],
+    "targetFramework": "netstandard2.1",
+    "typeReuseMode": "All"
+  }
+}
