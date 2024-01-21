@@ -46,7 +46,7 @@ namespace PaymentTerminalManager.implement
             return "5.3.531";
         }
 
-        public async Task PosRefundRequest(RefundFromTerminal refundFromTerminal)
+        public Task<RefundFromTerminalResult> RefundRequest(RefundFromTerminal refundFromTerminal)
         {
             throw new NotImplementedException();
         }

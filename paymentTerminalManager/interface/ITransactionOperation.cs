@@ -11,6 +11,6 @@ namespace PaymentTerminalManager.Interface
     {
         SendToTerminalResult SendToTerminal(SendToTerminal sendToTerminal);
         string ImplementSummery();
-        Task PosRefundRequest(RefundFromTerminal refundFromTerminal);
+        Task<RefundFromTerminalResult> RefundRequest(RefundFromTerminal refundFromTerminal);
     }
 }

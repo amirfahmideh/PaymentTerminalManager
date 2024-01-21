@@ -105,29 +105,113 @@ namespace PaymentTerminalManager.implement
             return errorMaps.TryGetValue(errorCode, out string message) ? message : defaultErrorMessage;
         }
 
-        public async Task PosRefundRequest(RefundFromTerminal rft)
+        public async Task<RefundFromTerminalResult> RefundRequest(RefundFromTerminal rft)
         {
             try
             {
-                
-                
-
+                int errorCode = -1;
+                string referenceNumber = "";
+                bool isSuccess = false;
                 PaymentGatewayClient client = new PaymentGatewayClient();
-
-                //var verifyResult = await client.bpVerifyRequestAsync(rft.TerminalId, rft.UserName, rft.Password, 0, 0, rft.SaleReferenceId);
-                //var verifyResult2 = await client.bpRefundVerifyRequestAsync(rft.TerminalId, rft.UserName, rft.Password, 0, 0, rft.SaleReferenceId);
-
-                //var ref2 = await client.bpPosRefundRequestAsync(rft.UserName, rft.Password, rft.SaleReferenceId, rft.RefundPrice);
-                //var refundResult2 = await client.bpRefundRequestV2Async(rft.TerminalId, rft.UserName, rft.Password, "", "09358379443", 0, 0, rft.SaleReferenceId, rft.RefundPrice);
-                var refundResult3 = await client.bpRefundRequestAsync(rft.TerminalId, rft.UserName, rft.Password, 0, 0, rft.SaleReferenceId, rft.RefundPrice);
-
-                //var ref3 = await client.bpRefundToPANRequestAsync(rft.UserName, rft.Password, 5041721051071315, rft.RefundPrice, rft.TerminalId, rft.TerminalId, "09358379443", 1);
-                //var ref4 = await client.bpRefundToPANRequestV2Async(rft.UserName, rft.Password, 5041721051071315, rft.RefundPrice, rft.SaleReferenceId, rft.TerminalId, 0, "09358379443");
+                var resultResponse = await client.bpRefundRequestAsync(rft.TerminalId, rft.UserName, rft.Password, 0, 0, rft.SaleReferenceId, rft.RefundPrice);
+                var stringResult = resultResponse.Body.@return;
+                if(!string.IsNullOrEmpty(stringResult)){
+                    if(stringResult.IndexOf(",") > -1) {
+                        var result = stringResult.Split(",");
+                        if(int.TryParse(result[0], out int res)) {
+                            if(res == 0) {
+                                isSuccess = true;
+                                referenceNumber = result[1];
+                            }
+                        }
+                    }
+                    else {
+                        if(int.TryParse(stringResult, out int err))  {
+                            errorCode = err;
+                        }
+                    }
+                }
+                if(isSuccess) {
+                    return new RefundFromTerminalResult() {
+                                        IsSuccess = true,
+                                        ReferenceNumber = referenceNumber,
+                                        ErrorCode = "",
+                                        ErrorTitle = ""
+                                    };
+                }
+                else {
+                    return new RefundFromTerminalResult() {
+                                        IsSuccess = false,
+                                        ReferenceNumber = "",
+                                        ErrorCode = errorCode.ToString(),
+                                        ErrorTitle = FriendlyRefundErrorTitle(errorCode)
+                                    };
+                }
             }
             catch (Exception ex)
             {
-                int a = 10;
+                return new RefundFromTerminalResult() {
+                    ErrorCode = "-1",
+                    ErrorTitle = ex.Message,
+                    IsSuccess = false,
+                    ReferenceNumber = ""
+                };
             }
+        }
+
+        private string FriendlyRefundErrorTitle(int errorCode)
+        {
+            const string defaultErrorMessage = "در فرایند ریفاند نامشخصی رخداده است";
+            Dictionary<int, string> errorMaps = new Dictionary<int, string>() {
+                {0,"تراکنش با موفقیت انجام شد"},
+                {11,"شماره کارت نامعتبر می باشد "},
+                {12,"موجودی کافی نیست"},
+                {13,"رمز نادرست است"},
+                {14,"تعداد دفعات وارد کردن رمز بیش از حد مجاز است"},
+                {15,"کارت نامعتبر است"},
+                {16,"دفعات برداشت بیش از حد مجاز است"},
+                {17,"کاربر از انجام تراکنش منصرف شده است"},
+                {18,"تاریخ انقضای کارت گذشته است"},
+                {19,"مبلغ برداشت بیش از حد مجاز است"},
+                {111,"صادر کننده کارت نامعتبر است"},
+                {112,"خطایی سوییچ صادر کننده کارت"},
+                {113,"پاسخی از صادر کننده کارت دریافت نشده است"},
+                {114,"دارنده کارت مجاز به انجام این تراکنش نیست"},
+                {21,"پذیرنده نامعتبر است"},
+                {23,"خطای امنیتی رخداده است"},
+                {24,"اطلاعات کاربری پذیرنده نامعتبر است"},
+                {25,"مبلغ نامعتبر است"},
+                {31,"پاسخ نامعتبر است"},
+                {32,"فرمت اطلاعات ارسالی صحیح نمی باشد"},
+                {33,"حساب نامعتبر است"},
+                {34,"خطای سیستمی"},
+                {35,"تاریخ نامعتبر است"},
+                {41,"شماره درخواست تکراری است"},
+                {42,"تراکنش فروش با این شناسه یافت نشد"},
+                {43,"درخواست قبلا اعتبار سنجی شده است"},
+                {44,"درخواست اعتبار سنجی یافت نشد"},
+                {45,"تراکنش settle یافت نشد"},
+                {46,"تراکنش settle نشده است"},
+                {47,"تراکنش settle یافت نشد"},
+                {48,"تراکنش reverse شده است"},
+                {412,"شناسه قبض نادرست است"},
+                {413,"شناسه پرداخت نادرست است"},
+                {414,"سازمان صادر کننده قبض نامعتبر است"},
+                {415,"زمان جلسه کاری به پایان رسیده است"},
+                {416,"خطا در ثبت اطلاعات"},
+                {417, "شناسه پرداخت کننده نامعتبر است"},
+                {418,"اشکال در تعریف اطلاعات مشتری"},
+                {419,"تعداد دفعات ورود اطلاعات از حد مجاز گذشته است"},
+                {421,"IP نامعتبر است"},
+                {51,"تراکنش تکراری است"},
+                {54,"تراکنش مرجع موجود نیست"},
+                {55,"تراکنش نامعتبر است "},
+                {61,"خطا در واریز"},
+                {62,"مسیر بازگشت به سایت در دامنه ثبت شده برای پذیرنده قرار ندارد"},
+                {98,"سقف استفاده از رمز ایستا به پایان رسیده است"},
+                {-1,defaultErrorMessage},
+            };
+            return errorMaps.TryGetValue(errorCode, out string message) ? message : defaultErrorMessage;
         }
     }
 }
