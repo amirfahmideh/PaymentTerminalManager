@@ -25,7 +25,7 @@ namespace PaymentTerminalManager.implement
                 result.Price = Decimal.TryParse(terminalResult.Amount, out decimal trsPrice) ? trsPrice : 0;
                 result.AccountNo = terminalResult.MerchantId;
                 result.CardNumber = terminalResult.CardNo;
-                result.TransactionSerialNumber = terminalResult.Rrn;
+                result.TransactionSerialNumber = terminalResult.TransactionNo;
                 result.TerminalNo = terminalResult.TerminalId;
                 result.ErrorCode = terminalResult.ResponseCode;
                 result.ErrorTitle = terminalResult.ResponseCodeMessage;
