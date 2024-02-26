@@ -36,7 +36,7 @@ namespace paymentTerminalManager.implement
                 result.CardNumber = ExtractNumber(panValue);
 
                 result.AccountNo = string.Empty;                                   //please check this   TR = 561925         GetTraceNo
-                var serialValue = pcpos.Response.GetTrxnSerial();                  //please check this   RN = 800657696924   GetTrxnRRN
+                var serialValue = pcpos.Response.GetTrxnRRN();                     //please check this   RN = 800657696924   GetTrxnRRN
                 result.TransactionSerialNumber = ExtractNumber(serialValue);       //please check this   SR = 31             GetTrxnSerial
 
                 var terminalValue = pcpos.Response.GetTerminalID();
