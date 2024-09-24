@@ -21,3 +21,5 @@ var result = to.SendToTerminal(SupportedTerminal.BEHPARDAKHT, new PaymentTermina
     RequestId = "1"
 });
 ```
+---
+<a href="https://www.coffeebede.com/amirfahmideh"><img class="img-fluid" src="https://coffeebede.ir/DashboardTemplateV2/app-assets/images/banner/default-yellow.svg" /></a>
